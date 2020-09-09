@@ -1,3 +1,9 @@
 <%- include ('./partials/header') %>
-TEST
+<ul>
+  <% todos.forEach(function(todo){%>
+    <li><%=todo.title%></li>   
+    <li><%=todo.content%></li>   
+  <%})%>
+</ul>
+
 <%- include ('./partials/footer') %>
