@@ -4,12 +4,15 @@
   "description": "a todo for my buisness",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node app"
   },
   "author": "dhagnere",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.2",
+    "bower": "^1.8.8",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mongodb": "^3.6.1"

@@ -1,9 +1,20 @@
 <%- include ('./partials/header') %>
+<form method="POST" action="/todo/add">
+  <div>
+    <label>Titre de la note</label>
+    <input type="text" name="title" placeholder="Ajouter une note">
+  </div>
+  <div>
+    <label>Contenu de la note</label>
+    <textarea  name="content" placeholder ="Entrer votre commentaire"></textarea>
+  </div>
+  <button type="submit">Ajouter la note</button>
+</form>
 <ul>
   <% todos.forEach(function(todo){%>
-    <li><%=todo.title%></li>   
-    <li><%=todo.content%></li>   
+    <li><%=todo.title %> - <%=todo.content%>  <%=todo._id%> 
+      <a data-id = "<%=todo._id%>" href="#" class="delete-todo">Effacer</a></li>
+      <a href="/todo/edit/<%=todo._id%>">Editer</a></li>        
   <%})%>
 </ul>
-
 <%- include ('./partials/footer') %>

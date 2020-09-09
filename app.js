@@ -8,6 +8,7 @@ const port = 3000;
 //init app
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 const assert = require('assert');
 
 const url = 'mongodb://localhost:27017';
@@ -54,6 +55,33 @@ app.get('/', (req, res, next) => {
   });
 });
 
+app.post('/todo/add', (req, res, next) => {
+  //create note
+  const todo = {
+    title: req.body.title,
+    content: req.body.content
+  }
 
+  //insert todo
+  Todos.insert(todo, (err, result) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('Note ajoutée...');
+    res.redirect('/');
+  })
+});
+
+//delete todo
+app.delete('/todo/delete/:id', (req, res, next) => {
+  const query = { _id: ObjectID(req.params.id) }
+  Todos.deleteOne(query, (err, response) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('Note éffacée');
+    res.sendStatus(200);
+  })
+});
 
 
