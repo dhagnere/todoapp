@@ -1,0 +1,14 @@
+<%- include ('./partials/header') %>
+<form method="POST" action="/todo/edit/<%=todo._id%>">
+  <div class="form-group">
+    <label>Titre de la note</label>
+    <input class="form-control"type="text" name="title" placeholder="Ajouter une note" value="<%=todo.title%>">
+  </div>
+  <div class="form-group">
+    <label>Contenu de la note</label>
+    <textarea class="form-control" name="content" placeholder ="Entrer votre commentaire"><%=todo.content%></textarea>
+  </div>
+  <button class="btn btn-primary btn-block ajout-note" type="submit">Editer la note</button> 
+  <button class="btn btn-warning btn-block annule-note" <a href="/">Annuler</a></button>
+</form>
+<%- include ('./partials/footer') %>

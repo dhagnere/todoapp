@@ -1,20 +1,30 @@
 <%- include ('./partials/header') %>
-<form method="POST" action="/todo/add">
-  <div>
-    <label>Titre de la note</label>
-    <input type="text" name="title" placeholder="Ajouter une note">
+
+<div class="row">
+  <div class = "col-md-4">
+    <form method="POST" action="/todo/add">
+      <div class="form-group">
+        <label>Titre de la note</label>
+        <input class = "form-control input"type="text" name="title" placeholder="Ajouter une note">
+      </div>
+      <div class="form-group">
+        <label>Contenu de la note</label>
+        <textarea class="form-control" name="content" placeholder ="Entrer votre commentaire"></textarea>
+      </div>
+      <br>
+      <button class="btn btn-primary btn-block ajout-note" type="submit">Ajouter la note</button>
+    </form>
   </div>
-  <div>
-    <label>Contenu de la note</label>
-    <textarea  name="content" placeholder ="Entrer votre commentaire"></textarea>
-  </div>
-  <button type="submit">Ajouter la note</button>
-</form>
-<ul>
-  <% todos.forEach(function(todo){%>
-    <li><%=todo.title %> - <%=todo.content%>  <%=todo._id%> 
-      <a data-id = "<%=todo._id%>" href="#" class="delete-todo">Effacer</a></li>
-      <a href="/todo/edit/<%=todo._id%>">Editer</a></li>        
-  <%})%>
-</ul>
+
+  <div class = "col-md-8">
+    <ul class = "list-group">
+      <% todos.forEach(function(todo){%>
+        <li class = "list-group-item"> <em>Titre</em> : <%=todo.title %> <br><br> <p> Contenu : <%=todo.content%> </p>
+          <a class = "btn btn-primary" href="/todo/edit/<%=todo._id%>">Editer</a> 
+          <a data-id = "<%=todo._id%>" href="#" class="delete-todo btn btn-danger">Effacer</a>
+        </li>
+              
+      <%})%>
+    </ul>
+
 <%- include ('./partials/footer') %>

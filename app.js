@@ -84,4 +84,33 @@ app.delete('/todo/delete/:id', (req, res, next) => {
   })
 });
 
+//edit todo
+app.get('/todo/edit/:id', (req, res, next) => {
+  const query = { _id: ObjectID(req.params.id) }
+  Todos.find(query).next((err, todo) => {
+    if (err) {
+      return console.log(err);
+    }
+    res.render('edit' , {
+      todo: todo
+    });
+  });
+});
 
+app.post('/todo/edit/:id', (req, res, next) => {
+  //fill view with note to update
+  const query = { _id: ObjectID(req.params.id) }
+  const todo = {
+    title: req.body.title,
+    content: req.body.content
+  }
+
+  //update todo
+  Todos.updateOne(query, {$set:todo}, (err, result) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('Note mise à jour...');
+    res.redirect('/');
+  })
+});
